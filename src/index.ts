@@ -1,5 +1,5 @@
 import {ApolloServer} from 'apollo-server'
-import { resolvers, typeDefs } from './graphql/schema'
+import { resolvers, typeDefs } from './infra/http/graphql/schema'
 
 
 async function startApolloServer(typeDefs: any, resolvers:any) {

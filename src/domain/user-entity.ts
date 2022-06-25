@@ -1,11 +1,13 @@
-import { emailValidate } from "../../utils/emailValidate"
-import { Profile } from "./profile"
+import { emailValidate } from "../utils/emailValidate"
+import { Profile } from "./profile-entity"
+import crypto from 'crypto'
 
 export type UserProps  = {
-  id?: string
+ 
   firstName: string
   lastName: string
   email: string
+  password: string
   profile: [Profile]
   createdAt?: Date
   updatedAt?: Date
@@ -13,12 +15,13 @@ export type UserProps  = {
 
 
 export class User {
+  public readonly id: string 
   public props: Required<UserProps>
 
-  constructor(props: UserProps){
+  constructor(props: UserProps, id?: string){
+    this.id = id || crypto.randomUUID()
     this.props = {
       ...props,
-      id: props.id || '',
       createdAt: props.createdAt || new Date(),
       updatedAt: props.updatedAt || new Date(),
 
@@ -74,7 +77,10 @@ export class User {
   }
 
   toJSON() {
-    return this.props
+    return {
+      id:this.id, 
+      ...this.props
+    }
   }
 }
 

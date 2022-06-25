@@ -1,4 +1,4 @@
-import {User, UserProps} from './user'
+import {User, UserProps} from './user-entity'
 
 describe('User Test', ()=> {
   test('constructor', ()=> {
@@ -6,33 +6,37 @@ let userProps: UserProps = {
   firstName: 'Thiago',
   lastName: 'Andrade',
   email:'thiago@email.com',
+  password: '123456',
   profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
   createdAt: new Date('2022-01-01'),
   updatedAt: new Date('2022-01-01')
 }
 let user = new User(userProps)
-expect(user.props).toStrictEqual({...userProps,  id: ''})
+expect(user.props).toStrictEqual({...userProps})
 
   userProps = {
-    id:'1',
+    
     firstName: 'Thiago',
     lastName: 'Andrade',
     email:'thiago@email.com',
+    password: '123456',
     profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
     createdAt: new Date('2022-01-01'),
     updatedAt: new Date('2022-01-01')
   }
   user = new User(userProps)
-  expect(user.props).toStrictEqual({...userProps,  id: '1'})
+  expect(user.id).toBeDefined()
+  expect(user.props).toStrictEqual({...userProps})
 
   })
 
   test('update firstName and lastName', () => {
    const userProps: UserProps = {
-      id:'1',
+      
       firstName: 'Thiago',
       lastName: 'Andrade',
       email:'thiago@email.com',
+      password: '123456',
       profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
       createdAt: new Date('2022-01-01'),
       updatedAt: new Date('2022-01-01')
@@ -46,10 +50,11 @@ expect(user.props).toStrictEqual({...userProps,  id: ''})
 
   test('update email with validated', ()=> {
     const userProps: UserProps = {
-      id:'1',
+      
       firstName: 'Thiago',
       lastName: 'Andrade',
       email:'thiago@email.com',
+      password: '123456',
       profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
       createdAt: new Date('2022-01-01'),
       updatedAt: new Date('2022-01-01')
