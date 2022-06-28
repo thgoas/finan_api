@@ -1,14 +1,13 @@
 import { emailValidate } from "../utils/emailValidate"
-import { Profile } from "./profile-entity"
+import { ProfileProps } from "./profile-entity"
 import crypto from 'crypto'
 
 export type UserProps  = {
- 
   firstName: string
   lastName: string
   email: string
   password: string
-  profile: [Profile]
+  profile: [ProfileProps]
   createdAt?: Date
   updatedAt?: Date
 }
@@ -26,6 +25,10 @@ export class User {
       updatedAt: props.updatedAt || new Date(),
 
     }
+    if(!emailValidate(this.props.email)){
+      throw new Error('This email is not valid!')
+    }
+    
   }
 
   updateFirstName (firstName: string) {
@@ -34,6 +37,11 @@ export class User {
   }
   updateLastName (lastName: string) {
     this.lastName = lastName
+    this.updatedAt = new Date()
+
+  }
+  updatePassword (password: string) {
+    this.password = password
     this.updatedAt = new Date()
 
   }
@@ -66,6 +74,9 @@ export class User {
   }
   private set lastName (value: string){
     this.props.lastName = value
+  }
+  private set password (value: string){
+    this.props.password = value
   }
 
   private set email (value: string) {

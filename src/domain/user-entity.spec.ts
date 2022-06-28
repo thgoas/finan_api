@@ -27,6 +27,7 @@ expect(user.props).toStrictEqual({...userProps})
   user = new User(userProps)
   expect(user.id).toBeDefined()
   expect(user.props).toStrictEqual({...userProps})
+  expect(() => user.updateEmail('thiagoemail2.com') ).toThrow('This email is not valid!')
 
   })
 
