@@ -1,14 +1,14 @@
 import { UserRepositoryInterface } from "../domain/user-repository"
 
-export class ListAllUsersUseCase {
+export class ListIdUsersUseCase {
   constructor(private userRepo: UserRepositoryInterface){}
-  async execute(): Promise<ListAllUsersOutput>{
-    const users = await this.userRepo.findAll()
-    return users.map(r => r.toJSON())
+  async execute(id: string): Promise<ListIdUsersOutput | undefined>{
+    const user = await this.userRepo.findId(id)
+    return user ? user.toJSON() : undefined
   }
 }
 
-export type ListAllUsersOutput ={
+export type ListIdUsersOutput ={
   id: string
   firstName: string
   lastName: string
@@ -16,4 +16,4 @@ export type ListAllUsersOutput ={
   password: string
   createdAt?: Date
   updatedAt?: Date
-}[]
+}

@@ -10,7 +10,6 @@ describe('CreateUserUseCase Tests', ()=>{
             firstName: 'Thiago',
             lastName: 'Andrade',
             email: 'thiago@email.com',
-            profile:[{name: 'Admin', description:'Administrator'}],
             password: '123456',
             updatedAt: new Date('2022-01-01'),
             createdAt: new Date('2022-01-01')
@@ -22,7 +21,6 @@ describe('CreateUserUseCase Tests', ()=>{
             lastName: 'Andrade',
             email: 'thiago@email.com',
             password: '123456',
-            profile:[{name: 'Admin', description:'Administrator'}], 
             updatedAt: new Date('2022-01-01'),
             createdAt: new Date('2022-01-01')
         })

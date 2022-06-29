@@ -10,21 +10,12 @@ export class CreateUserUseCase {
   }
 }
 
-export type CreateUserInput ={
+export type CreateUserInput = {
   
   firstName: string
   lastName: string
   email: string
-  profile: [Profile]
   password: string
-  createdAt?: Date
-  updatedAt?: Date
-}
-
-type Profile = {
-  id?: string
-  name: string
-  description: string
   createdAt?: Date
   updatedAt?: Date
 }
@@ -35,7 +26,6 @@ export type CreateUserOutput ={
   lastName: string
   email: string
   password: string
-  profile: [Profile]
   createdAt?: Date
   updatedAt?: Date
 }

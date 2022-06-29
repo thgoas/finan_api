@@ -4,6 +4,7 @@ export const userTypesDefs = gql`
 scalar Date
 extend type Query {
     users: [User]!
+    user (filter: UserFilter!): User!
    }
 extend type Mutation {
   createUser(data: UserInput!): User!
@@ -30,6 +31,11 @@ input UserInput {
   email: String
   password: String
   profile: [ProfileInput]
+}
+
+input UserFilter {
+  id: String
+  email: String
 }
 
 type Profile {

@@ -1,5 +1,4 @@
 import { emailValidate } from "../utils/emailValidate"
-import { ProfileProps } from "./profile-entity"
 import crypto from 'crypto'
 
 export type UserProps  = {
@@ -7,7 +6,6 @@ export type UserProps  = {
   lastName: string
   email: string
   password: string
-  profile: [ProfileProps]
   createdAt?: Date
   updatedAt?: Date
 }
