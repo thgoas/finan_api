@@ -7,27 +7,47 @@ let userProps: UserProps = {
   lastName: 'Andrade',
   email:'thiago@email.com',
   password: '123456',
-  profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
+  confirmPassword:'123456',
   createdAt: new Date('2022-01-01'),
   updatedAt: new Date('2022-01-01')
 }
 let user = new User(userProps)
-expect(user.props).toStrictEqual({...userProps})
+expect(user.props).toStrictEqual({
+  ...userProps,
+  password: user.props.password
 
+})
+
+userProps = {
+    
+  firstName: 'Thiago',
+  lastName: 'Andrade',
+  email:'thiago@email.com',
+  password: '123456',
+  confirmPassword: '123454',
+  createdAt: new Date('2022-01-01'),
+  updatedAt: new Date('2022-01-01')
+}
+// user = new User(userProps)
+expect(() => new User(userProps)).toThrow('Passwords and confirm password are not the same!')
+expect(() => user.updatePassword('12345', '123456')).toThrow('Passwords and confirm password are not the same!')
+user.updatePassword('123', '123')
+expect(user.password).toBe(user.password)
   userProps = {
     
     firstName: 'Thiago',
     lastName: 'Andrade',
     email:'thiago@email.com',
     password: '123456',
-    profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
+    confirmPassword: '123456',
     createdAt: new Date('2022-01-01'),
     updatedAt: new Date('2022-01-01')
   }
   user = new User(userProps)
   expect(user.id).toBeDefined()
-  expect(user.props).toStrictEqual({...userProps})
+  expect(user.props).toStrictEqual({...userProps, password: user.props.password})
   expect(() => user.updateEmail('thiagoemail2.com') ).toThrow('This email is not valid!')
+
 
   })
 
@@ -38,7 +58,7 @@ expect(user.props).toStrictEqual({...userProps})
       lastName: 'Andrade',
       email:'thiago@email.com',
       password: '123456',
-      profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
+      confirmPassword: '123456',
       createdAt: new Date('2022-01-01'),
       updatedAt: new Date('2022-01-01')
     }
@@ -56,7 +76,7 @@ expect(user.props).toStrictEqual({...userProps})
       lastName: 'Andrade',
       email:'thiago@email.com',
       password: '123456',
-      profile: [{name: 'Admin', description:'Administrator', createdAt: new Date('2022-01-01')}],
+      confirmPassword: '123456',
       createdAt: new Date('2022-01-01'),
       updatedAt: new Date('2022-01-01')
     }
@@ -68,5 +88,5 @@ expect(user.props).toStrictEqual({...userProps})
 
   })
 
-
+  
 })

@@ -30,6 +30,7 @@ input UserInput {
   lastName: String
   email: String
   password: String
+  confirmPassword: String
   profile: [ProfileInput]
 }
 

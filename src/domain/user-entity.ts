@@ -1,11 +1,13 @@
 import { emailValidate } from "../utils/emailValidate"
 import crypto from 'crypto'
+import bcrypt from 'bcryptjs'
 
 export type UserProps  = {
   firstName: string
   lastName: string
   email: string
   password: string
+  confirmPassword: string
   createdAt?: Date
   updatedAt?: Date
 }
@@ -26,6 +28,13 @@ export class User {
     if(!emailValidate(this.props.email)){
       throw new Error('This email is not valid!')
     }
+    if(this.props.password !== this.props.confirmPassword){
+      throw new Error('Passwords and confirm password are not the same!')
+
+    }else {
+      const salt = bcrypt.genSaltSync()
+      this.props.password = bcrypt.hashSync(this.props.password, salt)
+    }
     
   }
 
@@ -38,9 +47,16 @@ export class User {
     this.updatedAt = new Date()
 
   }
-  updatePassword (password: string) {
-    this.password = password
-    this.updatedAt = new Date()
+  updatePassword (password: string, confirmPassword: string) {
+    if(password === confirmPassword){
+      const salt = bcrypt.genSaltSync()
+      this.password = bcrypt.hashSync(this.password, salt)
+      
+      this.updatedAt = new Date()
+    }else{
+      throw new Error('Passwords and confirm password are not the same!')
+    }
+
 
   }
 
@@ -67,6 +83,10 @@ export class User {
     return this.props.email
   }
 
+  get password () {
+    return this.props.password
+  }
+
   private set firstName (value: string){
     this.props.firstName = value
   }
@@ -75,6 +95,9 @@ export class User {
   }
   private set password (value: string){
     this.props.password = value
+  }
+  private set confirmPassword (value: string){
+    this.props.confirmPassword = value
   }
 
   private set email (value: string) {

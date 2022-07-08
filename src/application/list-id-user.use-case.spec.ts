@@ -13,6 +13,7 @@ describe('List id user Test', ()=>{
             lastName: 'Andrade',
             email: 'thiago@email.com',
             password: '123456',
+            confirmPassword: '123456',
             updatedAt: new Date('2022-01-01'),
             createdAt: new Date('2022-01-01')
         })
@@ -21,6 +22,7 @@ describe('List id user Test', ()=>{
             lastName: 'Andrade 2',
             email: 'thiago2@email.com',
             password: '123456',
+            confirmPassword: '123456',
             updatedAt: new Date('2022-01-01'),
             createdAt: new Date('2022-01-01')
         })
@@ -34,7 +36,8 @@ describe('List id user Test', ()=>{
                 firstName: 'Thiago',
                 lastName: 'Andrade',
                 email: 'thiago@email.com',
-                password: '123456',
+                password: repository.items[0].password,
+                confirmPassword: '123456',
                 updatedAt: new Date('2022-01-01'),
                 createdAt: new Date('2022-01-01')
             }

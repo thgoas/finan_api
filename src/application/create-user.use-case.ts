@@ -16,6 +16,7 @@ export type CreateUserInput = {
   lastName: string
   email: string
   password: string
+  confirmPassword:string
   createdAt?: Date
   updatedAt?: Date
 }
@@ -26,6 +27,15 @@ export type CreateUserOutput ={
   lastName: string
   email: string
   password: string
+  createdAt?: Date
+  updatedAt?: Date
+  profile?: [Profile]
+}
+
+type Profile ={
+  id: string
+  name: string
+  description: string
   createdAt?: Date
   updatedAt?: Date
 }
